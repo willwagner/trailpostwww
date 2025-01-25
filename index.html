@@ -6,6 +6,49 @@
     <title>TrailPost.io</title>
     <link rel="icon" type="image/png" href="images/appstore.png">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Hide/show navigation based on screen size */
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #4C362A;
+        }
+
+        .hamburger-menu {
+            display: none; /* Default: hidden */
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none; /* Hide nav on smaller screens */
+            }
+
+            .hamburger-menu {
+                display: block; /* Show hamburger menu */
+                position: relative;
+                background-color: #4C362A;
+                padding: 1em;
+            }
+
+            #menu-content {
+                display: none; /* Hidden by default */
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: #4C362A;
+                padding: 1em;
+                width: 100%;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            }
+
+            #menu-content a {
+                color: white;
+                text-decoration: none;
+                display: block;
+                padding: 0.5em 0;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -16,14 +59,28 @@
         <h1>Trail Post Offline Editor</h1>
         <p style="color: #ffffff; font-style: italic; position: relative; z-index: 2;">Blog and share photos while offline and upload them in one click!</p>
     </header>
+
+    <!-- Hamburger Menu -->
+    <div class="hamburger-menu">
+        <button id="menu-toggle" style="background: none; border: none; color: white; font-size: 1.5em; cursor: pointer;">☰</button>
+        <div id="menu-content">
+            <a href="index.html">Home</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="tos.html">Terms of Service</a>
+            <a href="about.html">About</a>
+        </div>
+    </div>
+
+    <!-- Standard Menu -->
     <nav>
         <a href="index.html">Home</a>
         <a href="privacy.html">Privacy Policy</a>
         <a href="tos.html">Terms of Service</a>
         <a href="about.html">About</a>
     </nav>
-    <main style="display: flex; align-items: flex-start; gap: 2em;">
-        <div class="left" style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+
+    <main style="display: flex; align-items: flex-start; gap: 2em; flex-wrap: wrap;">
+        <div class="left" style="flex: 1; display: flex; flex-direction: column; align-items: center; order: 2; width: 100%;">
             <div class="screenshot-container" style="display: flex; justify-content: center; gap: 1em;">
                 <img class="screenshot" src="images/screenshot.png" alt="Trail Post App Screenshot" style="max-width: 25%; height: auto; border-radius: 10px;">
                 <img class="screenshot" src="images/screenshot2.png" alt="Trail Post App Screenshot 2" style="max-width: 25%; height: auto; border-radius: 10px;">
@@ -32,7 +89,7 @@
                 <img src="images/appstore_button.png" alt="Download on the App Store" style="max-width: 200px;">
             </a>
         </div>
-        <div class="right" style="flex: 2;">
+        <div class="right" style="flex: 1; order: 1; width: 100%;">
             <p><strong>Trail Post Offline Editor</strong> is a free iOS app that allows you to write blog posts and share photos while on the trail without internet service. When you finally get access to the internet, upload your posts with a click of the button.</p>
             <p>Trail Post will post to your <strong>Google Blogger</strong> blog including adding your location, your Apple health info like step count, etc.</p>
             <p>Also, you can upload photos to a <strong>Google Photo</strong> album to share with friends.</p>
@@ -40,9 +97,22 @@
             <p>No new account or passwords required and you can delete the app at any time and still have your blog and photos hosted with Google.</p>
         </div>
     </main>
+
     <footer>
         <p>&copy; 2025 TrailPost.io. All rights reserved. | <a href="mailto:info@trailpost.io" style="color: white; text-decoration: none;">info@trailpost.io</a></p>
     </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const menuToggle = document.getElementById("menu-toggle");
+            const menuContent = document.getElementById("menu-content");
+
+            menuToggle.addEventListener("click", function () {
+                const isVisible = menuContent.style.display === "block";
+                menuContent.style.display = isVisible ? "none" : "block";
+            });
+        });
+    </script>
 </body>
 </html>
 
